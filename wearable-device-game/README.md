@@ -19,7 +19,7 @@ Webアプリのタイトル画面です。なお、タイトル画面のUIデザ
 
 ## Source Code
 
-- [`src/pose_ring_main_controller.py`](src/pose_ring_main_controller.py)
+- [`src/pose_ring_mainPC_controller.py`](src/pose_ring_mainPC_controller.py)
 
 メインPC側で動作する制御プログラムです。  
 Aセットの2台のWebカメラで色付きデバイスを検出し、サブPCから受信したBセットの3D座標も補助的に利用します。  
