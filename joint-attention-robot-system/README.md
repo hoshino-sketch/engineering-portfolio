@@ -26,10 +26,10 @@ Webカメラを用いた視線推定結果から人の視線方向を取得し�
 
 ## Files
 
-- `src/gaze_data_sender.py`  
+- [`src/gaze_data_sender.py`](src/gaze_data_sender.py)  
   ptgazeの出力から視線角度を取得し、制御プログラムへ送信するプログラムです。
 
-- `src/gaze_robot_controller.py`  
+- [`src/gaze_robot_controller.py`](src/gaze_robot_controller.py)  
   視線角度をもとに注視対象と共同注意の成立状態を判定し、ロボットの応答行動を制御するプログラムです。
 
 ## My Contributions
