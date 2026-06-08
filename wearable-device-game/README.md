@@ -7,7 +7,7 @@
 
 ![PoseRing title screen](media/pose_ring_title_screen.png)
 
-※ タイトル画面のUIデザインおよびビジュアル制作は、チーム内の別メンバーが担当しました。
+Webアプリのタイトル画面です。なお、タイトル画面のUIデザインおよびビジュアル制作は、チーム内の別メンバーが担当しました。
 
 ## Demo
 
