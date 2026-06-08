@@ -27,10 +27,6 @@ from bleak import BleakScanner, BleakClient
 #   Bセットカメラ2台を読む
 #   Bセット3D座標をUDP送信する
 #
-# 重要:
-#   A/Bの3D座標系は直接混ぜない。
-#   Aを使う色は A現在座標 vs A目標座標。
-#   Bを使う色は B現在座標 vs B目標座標。
 # ============================================================
 def get_latest_calibration_file(prefix):
     """
@@ -106,8 +102,7 @@ REQUIRE_TARGET_LIVE_FOR_LED = False
 # False: 従来に近い挙動。BLE接続中は基本白で待機する
 ENABLE_STAGE_VISIBLE_LED = True
 
-# True : ステージ内外判定ではLAST_USEDを使わず、A/BどちらかでLIVE検出できた時だけ「ステージ内」とする
-# 画面外に出たらすぐ消灯させたいので、基本は True 推奨
+# True : A/BどちらかでLIVE検出できた時だけ「ステージ内」とする
 STAGE_VISIBLE_REQUIRES_LIVE = True
 
 # 対象色を一瞬見失っても、すぐにはステージ外扱いにしない猶予時間。
@@ -128,14 +123,14 @@ VIEW_W = 320
 VIEW_H = 240
 
 # 写真保存設定
-# sキーで出題時写真、ALL CLEAR時にクリア時写真と比較画像を保存する。
+# sキーで出題時写真、ALL CLEAR時にクリア時写真と比較画像を保存する
 ENABLE_PHOTO_CAPTURE = True
 PHOTO_BASE_DIR = "pose_photos"
 PHOTO_WINDOW_NAME = "PoseRing Result Photos"
 PHOTO_RESULT_W = 640
 PHOTO_RESULT_H = 480
 
-# 結果写真ウィンドウ表示サイズ。小さめにしてモニターからはみ出さないようにする。
+# 結果写真ウィンドウ表示サイズ
 PHOTO_DISPLAY_MAX_W = 1200
 PHOTO_DISPLAY_MAX_H = 650
 COMPARISON_PANEL_W = 560
@@ -154,7 +149,6 @@ B_BACKEND = "DSHOW"
 CLEAR_DISTANCE_MM = 400.0
 HOLD_TIME_SEC = 2.0
 
-# CLEAR_DISTANCE_MM=390なら、1170mm以内から赤くなり始める
 FEEDBACK_MAX_DISTANCE_MM = CLEAR_DISTANCE_MM * 1.2
 
 # 色を見失った時、最後の判定情報を使い続ける最大時間
@@ -167,24 +161,23 @@ kernel = np.ones((5, 5), np.uint8)
 
 # =========================
 # HSV設定
-# 照明や素材に合わせて調整する
 # =========================
 
-# 赤：少し緩める。暗め・薄めの赤も拾いやすくする
+# 赤
 LOWER_RED_1 = np.array([0, 160, 80])
 UPPER_RED_1 = np.array([10, 255, 255])
 LOWER_RED_2 = np.array([170, 160, 80])
 UPPER_RED_2 = np.array([179, 255, 255])
 
-# 黄色：少し緩める。現在より暗い黄色・薄い黄色も拾う
+# 黄色
 LOWER_YELLOW = np.array([18, 80, 70])
 UPPER_YELLOW = np.array([40, 255, 255])
 
-# 青：少し緩める。影だけ拾う場合はV下限を下げすぎない
+# 青
 LOWER_BLUE = np.array([90, 55, 45])
 UPPER_BLUE = np.array([130, 255, 255])
 
-# 緑：少し緩める。濃い緑・暗い緑を拾いやすくする
+# 緑
 LOWER_GREEN = np.array([30, 25, 10])
 UPPER_GREEN = np.array([105, 255, 245])
 COLOR_ORDER = ["RED", "YELLOW", "BLUE", "GREEN"]
